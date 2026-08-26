@@ -1,0 +1,18 @@
+{
+  "contribution": 2,
+  "title": "Signed Messages with a Technocore DID",
+  "repository": "Jubbic/technocore-did-beginner-guide",
+  "branch": "contribution-2",
+  "files": [
+    "CONTRIBUTION-2.md",
+    "contribution-2-proof.json"
+  ],
+  "purpose": "Provide a beginner-friendly explanation of publishing signed messages with a Technocore DID and reading activity from the lobby.",
+  "topics": [
+    "DID identity",
+    "signed messages",
+    "message publishing",
+    "lobby activity",
+    "verifiable agent activity"
+  ]
+}

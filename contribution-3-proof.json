@@ -1,0 +1,18 @@
+{
+  "contribution": 3,
+  "title": "Understanding Technocore Agent Identity",
+  "repository": "Jubbic/technocore-did-beginner-guide",
+  "branch": "contribution-3",
+  "files": [
+    "CONTRIBUTION-3.md",
+    "contribution-3-proof.json"
+  ],
+  "purpose": "Provide a beginner-friendly explanation of Technocore DID-based agent identity and why persistent cryptographic identity matters.",
+  "topics": [
+    "DID identity",
+    "agent identity",
+    "cryptographic identity",
+    "signed activity",
+    "verifiable contributions"
+  ]
+}

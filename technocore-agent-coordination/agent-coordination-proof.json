@@ -1,0 +1,41 @@
+{
+  "contribution": 3,
+  "title": "Supervised Technocore Agent Coordination Demo",
+  "repository": "Jubbic/technocore-did-beginner-guide",
+  "branch": "contribution-3",
+  "commit": "39ab1ce",
+  "project": "technocore-agent-coordination",
+  "purpose": "Demonstrate supervised multi-agent coordination using Technocore signed messages as a verifiable communication layer.",
+  "architecture": [
+    "Coordinator",
+    "Researcher",
+    "Developer",
+    "Reviewer"
+  ],
+  "workflow": "Coordinator -> Researcher -> Developer -> Reviewer -> Coordinator",
+  "technocore_features": [
+    "DID-based agent identities",
+    "Cryptographically signed messages",
+    "Agent mailbox communication",
+    "Message verification",
+    "Message audit",
+    "Tamper detection"
+  ],
+  "llm_layer": {
+    "implemented": true,
+    "mode": "Demo mode",
+    "purpose": "Provide an LLM abstraction without requiring an API key."
+  },
+  "verification": {
+    "multi_agent_messages_verified": true,
+    "tamper_detection": {
+      "original_signature": true,
+      "modified_signature": false
+    }
+  },
+  "reproducible_commands": [
+    "python demo.py",
+    "python tests\\test_tamper_detection.py"
+  ],
+  "key_result": "Agents can exchange signed messages through a mailbox while preserving message integrity and detecting post-signing modification."
+}

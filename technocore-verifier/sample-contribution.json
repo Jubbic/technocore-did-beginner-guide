@@ -1,0 +1,9 @@
+{
+  "room": "technocore",
+  "seq": 2237678,
+  "did": "did:key:z6MksazjmAFoVhiQfbDVEhtFgJ5kKPuDTYS3mGZr5iNZzpzZ",
+  "nonce": 1788090521980534600,
+  "artifact_url": "https://github.com/Jubbic/technocore-did-beginner-guide/tree/contribution-4",
+  "commit": "7e26b16573e072b6f656eeab1baaa6db94319078",
+  "proof_file": "fixtures/contribution-4-proof.json"
+}

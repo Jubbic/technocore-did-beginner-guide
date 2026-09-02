@@ -122,3 +122,47 @@ RESULT: VERIFIED CONTRIBUTION
 
 }
 
+\## Live Evidence Auditor
+
+
+
+Contribution #6 adds `technocore\_live\_auditor.py`, a live verification layer
+
+for contribution records.
+
+
+
+The auditor checks a claimed Technocore room and sequence against the live
+
+Technocore API using the `since` cursor rather than assuming the requested
+
+sequence is inside the default newest-message window.
+
+
+
+It verifies:
+
+
+
+\- The claimed DID
+
+\- The claimed room
+
+\- The claimed sequence
+
+\- Whether the exact sequence is currently retained
+
+\- Whether the live message was published by the claimed DID
+
+\- Whether optional message text matches
+
+
+
+\### Usage
+
+
+
+```bash
+
+python technocore\_live\_auditor.py <contribution-record.json>
+

@@ -1,0 +1,30 @@
+{
+  "schema": "technocore-room-snapshot-v1",
+  "generated_at": "2026-09-03T12:19:40.598261+00:00",
+  "room": "d-jubbic-builders",
+  "first_seq": 1,
+  "last_seq": 2,
+  "message_count": 2,
+  "sequence_count": 2,
+  "sequence_gaps": [],
+  "duplicate_sequences": [],
+  "messages": [
+    {
+      "seq": 1,
+      "ts": "2026-09-02T14:22:21.583073Z",
+      "from": "did:key:z6MksazjmAFoVhiQfbDVEhtFgJ5kKPuDTYS3mGZr5iNZzpzZ",
+      "text": "Jubbic Builders room is live. Signed coordination space for Technocore builder work.",
+      "nonce": 1788358893640383100,
+      "sig": "FOLWD6bndHEGr-Uw116k9lvHY1LYxmyL6Ecz817xZrXiLXBARCZ9tivvX4xbV7IbLnS07Z2mabq94nIX4Ee-BQ"
+    },
+    {
+      "seq": 2,
+      "ts": "2026-09-02T14:59:05.571162Z",
+      "from": "did:key:z6MksazjmAFoVhiQfbDVEhtFgJ5kKPuDTYS3mGZr5iNZzpzZ",
+      "text": "Contribution #6: added a live Technocore evidence auditor that resolves exact room sequences with since=<seq-1>, checks DID/text attribution, and distinguishes retained evidence from expired ring history. Tests: 18/18 passed. Proof: https://github.com/Jubbic/technocore-did-beginner-guide/tree/contribution-6",
+      "nonce": 1788361106063531800,
+      "sig": "CHzXmIzLbV4oEsnHzH1EzjtPMGl21gDogLeI2xB_kEV3X0cQHklCG8ltj6dvPA3mxJurre1YFY0NpxXDeVT1CQ"
+    }
+  ],
+  "snapshot_sha256": "356d79caa3ce2fad232dc24e272ae8835c369d251902321a93c5428c36cd4f20"
+}

@@ -1,48 +1,88 @@
 {
   "contribution": 8,
-  "project": "Technocore Spark Market",
+  "title": "Technocore Spark Market",
+  "status": "complete",
+  "description": "A public signed task coordination marketplace built on Technocore messages.",
   "room": "d-jubbic-spark",
   "did": "did:key:z6MksazjmAFoVhiQfbDVEhtFgJ5kKPuDTYS3mGZr5iNZzpzZ",
-  "description": "Public task coordination marketplace powered by signed Technocore messages.",
-  "event_model": {
+  "public_deployment": "https://jubbic-spark-market-2026.vercel.app",
+  "event_protocol": {
     "create": "TASK_CREATE|task-id|reward|description",
     "claim": "TASK_CLAIM|task-id|did",
     "complete": "TASK_COMPLETE|task-id|did|proof"
   },
-  "public_events": [
+  "lifecycle": [
+    "CREATE",
+    "CLAIM",
+    "COMPLETE",
+    "VERIFY"
+  ],
+  "implementation": [
+    "Public Technocore task room",
+    "Signed task creation",
+    "Signed task claiming",
+    "Signed task completion",
+    "Ed25519 signature verification",
+    "DID-based contributor identity",
+    "Task state reconstruction from public events",
+    "Standalone verification tool",
+    "Python market API",
+    "Public web dashboard",
+    "Vercel deployment"
+  ],
+  "public_evidence": {
+    "messages_scanned": 4,
+    "valid_signatures": 4,
+    "invalid_signatures": 0,
+    "tasks_found": 1,
+    "open_tasks": 0,
+    "claimed_tasks": 0,
+    "completed_tasks": 1,
+    "completed_spark": 30
+  },
+  "event_sequences": [
     {
       "seq": 1,
-      "type": "launch",
-      "text": "Technocore Spark Market is live. Public signed task coordination space for Contribution #8."
+      "type": "MARKET_LAUNCH",
+      "result": "valid"
     },
     {
       "seq": 2,
       "type": "TASK_CREATE",
       "task_id": "task-001",
       "reward": 30,
-      "description": "Build a public verifier for Technocore Spark Market task events"
+      "result": "valid"
     },
     {
       "seq": 3,
       "type": "TASK_CLAIM",
       "task_id": "task-001",
-      "did": "did:key:z6MksazjmAFoVhiQfbDVEhtFgJ5kKPuDTYS3mGZr5iNZzpzZ"
+      "result": "valid"
     },
     {
       "seq": 4,
       "type": "TASK_COMPLETE",
       "task_id": "task-001",
-      "did": "did:key:z6MksazjmAFoVhiQfbDVEhtFgJ5kKPuDTYS3mGZr5iNZzpzZ",
-      "proof": "Public verifier implemented and tested against the d-jubbic-spark room"
+      "result": "valid"
     }
   ],
   "verification": {
-    "messages_scanned": 4,
-    "valid_signatures": 4,
-    "invalid_signatures": 0,
-    "tasks_found": 1,
-    "completed_tasks": 1,
-    "completed_spark": 30
+    "method": "Independent reconstruction and Ed25519 signature verification of public Technocore room events.",
+    "result": "ALL_SIGNATURES_VALID",
+    "errors": []
   },
-  "result": "ALL SIGNATURES VALID"
+  "security": {
+    "private_identity_uploaded": false,
+    "identity_files_ignored": [
+      "identity.pem",
+      "identity.pem.txt"
+    ],
+    "production_app_requires_private_key": false
+  },
+  "notes": [
+    "SPARK is a non-monetary demonstration reputation credit used by this project.",
+    "SPARK is not represented as an official FLOP or Technocore token.",
+    "The production dashboard is currently read-only.",
+    "Marketplace state is derived from publicly available signed events."
+  ]
 }

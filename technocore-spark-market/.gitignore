@@ -2,7 +2,7 @@
 identity.pem
 identity.pem.txt
 
-# Python virtual environments
+# Python virtual environment
 .venv/
 venv/
 

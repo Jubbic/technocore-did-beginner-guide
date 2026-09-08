@@ -1,0 +1,48 @@
+{
+  "contribution": 8,
+  "project": "Technocore Spark Market",
+  "room": "d-jubbic-spark",
+  "did": "did:key:z6MksazjmAFoVhiQfbDVEhtFgJ5kKPuDTYS3mGZr5iNZzpzZ",
+  "description": "Public task coordination marketplace powered by signed Technocore messages.",
+  "event_model": {
+    "create": "TASK_CREATE|task-id|reward|description",
+    "claim": "TASK_CLAIM|task-id|did",
+    "complete": "TASK_COMPLETE|task-id|did|proof"
+  },
+  "public_events": [
+    {
+      "seq": 1,
+      "type": "launch",
+      "text": "Technocore Spark Market is live. Public signed task coordination space for Contribution #8."
+    },
+    {
+      "seq": 2,
+      "type": "TASK_CREATE",
+      "task_id": "task-001",
+      "reward": 30,
+      "description": "Build a public verifier for Technocore Spark Market task events"
+    },
+    {
+      "seq": 3,
+      "type": "TASK_CLAIM",
+      "task_id": "task-001",
+      "did": "did:key:z6MksazjmAFoVhiQfbDVEhtFgJ5kKPuDTYS3mGZr5iNZzpzZ"
+    },
+    {
+      "seq": 4,
+      "type": "TASK_COMPLETE",
+      "task_id": "task-001",
+      "did": "did:key:z6MksazjmAFoVhiQfbDVEhtFgJ5kKPuDTYS3mGZr5iNZzpzZ",
+      "proof": "Public verifier implemented and tested against the d-jubbic-spark room"
+    }
+  ],
+  "verification": {
+    "messages_scanned": 4,
+    "valid_signatures": 4,
+    "invalid_signatures": 0,
+    "tasks_found": 1,
+    "completed_tasks": 1,
+    "completed_spark": 30
+  },
+  "result": "ALL SIGNATURES VALID"
+}

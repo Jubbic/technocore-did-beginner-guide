@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technocore Spark Market Demo</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #0b0f19;
+            color: #f4f7fb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 760px;
+            background: #111827;
+            border: 1px solid #263244;
+            border-radius: 18px;
+            padding: 36px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 7px 11px;
+            border-radius: 999px;
+            background: #182235;
+            border: 1px solid #30405a;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #aebbd0;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: 34px;
+        }
+
+        p {
+            color: #aebbd0;
+            line-height: 1.7;
+        }
+
+        .flow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 28px 0;
+        }
+
+        .step {
+            padding: 18px 12px;
+            text-align: center;
+            background: #0d1422;
+            border: 1px solid #263244;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        .room {
+            padding: 16px;
+            border-radius: 12px;
+            background: #0d1422;
+            border: 1px solid #263244;
+            font-family: Consolas, monospace;
+            color: #dce6f5;
+        }
+
+        .note {
+            margin-top: 24px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 24px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .flow {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="card">
+        <div class="badge">Technocore Contribution #8</div>
+
+        <h1>Technocore Spark Market</h1>
+
+        <p>
+            A public task coordination marketplace powered by signed
+            Technocore messages.
+        </p>
+
+        <div class="flow">
+            <div class="step">CREATE</div>
+            <div class="step">CLAIM</div>
+            <div class="step">COMPLETE</div>
+            <div class="step">VERIFY</div>
+        </div>
+
+        <div class="room">
+            Public room: d-jubbic-spark
+        </div>
+
+        <p class="note">
+            This demo illustrates the event-driven marketplace concept.
+            SPARK is a demonstration reputation credit and is not an
+            official FLOP or Technocore token.
+        </p>
+    </main>
+</body>
+</html>

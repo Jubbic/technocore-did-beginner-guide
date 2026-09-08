@@ -1,4 +1,5 @@
 from http.server import BaseHTTPRequestHandler
+from pathlib import Path
 import json
 import base64
 import urllib.request
@@ -10,6 +11,9 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
 
 ROOM = "d-jubbic-spark"
 BASE_URL = "https://technocore.chat"
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+INDEX_FILE = PROJECT_ROOT / "index.html"
 
 INVISIBLE_CATEGORIES = {
     "Cc",
@@ -30,15 +34,21 @@ def base58btc_decode(value):
     alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
 
     number = 0
+
     for character in value:
         if character not in alphabet:
             raise ProtocolError("Invalid base58 character")
+
         number = number * 58 + alphabet.index(character)
 
-    raw = number.to_bytes(
-        (number.bit_length() + 7) // 8,
-        "big",
-    ) if number else b""
+    raw = (
+        number.to_bytes(
+            (number.bit_length() + 7) // 8,
+            "big",
+        )
+        if number
+        else b""
+    )
 
     leading_zeroes = len(value) - len(value.lstrip("1"))
 
@@ -119,7 +129,9 @@ def verify_message(message):
             signature + "=="
         )
     except Exception as error:
-        raise ProtocolError("Invalid signature encoding") from error
+        raise ProtocolError(
+            "Invalid signature encoding"
+        ) from error
 
     public_key = public_key_from_did(did)
 
@@ -198,7 +210,6 @@ def build_market():
 
         event_type = parts[0]
 
-        # TASK_CREATE|task-id|reward|description
         if event_type == "TASK_CREATE":
 
             if len(parts) < 4:
@@ -227,7 +238,6 @@ def build_market():
                 "proof": None,
             }
 
-        # TASK_CLAIM|task-id|did
         elif event_type == "TASK_CLAIM":
 
             if len(parts) != 3:
@@ -246,7 +256,6 @@ def build_market():
                 task["claimed_by"] = claimant
                 task["claim_seq"] = message.get("seq")
 
-        # TASK_COMPLETE|task-id|did|proof
         elif event_type == "TASK_COMPLETE":
 
             if len(parts) < 4:
@@ -340,7 +349,7 @@ class handler(BaseHTTPRequestHandler):
 
         self.send_header(
             "Content-Type",
-            "application/json",
+            "application/json; charset=utf-8",
         )
 
         self.send_header(
@@ -362,20 +371,76 @@ class handler(BaseHTTPRequestHandler):
 
         self.wfile.write(body)
 
-    def do_GET(self):
+    def send_html(self):
 
         try:
 
-            result = build_market()
+            body = INDEX_FILE.read_bytes()
 
-            self.send_json(result)
+            self.send_response(200)
+
+            self.send_header(
+                "Content-Type",
+                "text/html; charset=utf-8",
+            )
+
+            self.send_header(
+                "Cache-Control",
+                "no-store",
+            )
+
+            self.send_header(
+                "Content-Length",
+                str(len(body)),
+            )
+
+            self.end_headers()
+
+            self.wfile.write(body)
 
         except Exception as error:
 
             self.send_json(
                 {
-                    "error": str(error),
-                    "room": ROOM,
+                    "error": "Unable to load dashboard",
+                    "details": str(error),
                 },
                 status=500,
             )
+
+    def do_GET(self):
+
+        path = self.path.split("?", 1)[0]
+
+        # Serve the dashboard at the root.
+        if path in {"/", "/index.html"}:
+            self.send_html()
+            return
+
+        # Serve the market API.
+        if path == "/api/market":
+            try:
+
+                result = build_market()
+
+                self.send_json(result)
+
+            except Exception as error:
+
+                self.send_json(
+                    {
+                        "error": str(error),
+                        "room": ROOM,
+                    },
+                    status=500,
+                )
+
+            return
+
+        self.send_json(
+            {
+                "error": "Not found",
+                "path": path,
+            },
+            status=404,
+        )

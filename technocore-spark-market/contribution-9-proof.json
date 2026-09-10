@@ -1,0 +1,56 @@
+{
+  "contribution": 9,
+  "title": "Spark Market Participant Client",
+  "status": "implemented_and_tested",
+  "project": "technocore-spark-market",
+  "room": "d-jubbic-spark",
+  "did": "did:key:z6MksazjmAFoVhiQfbDVEhtFgJ5kKPuDTYS3mGZr5iNZzpzZ",
+  "goal": "Add a local participant workflow for discovering, claiming, and completing signed Spark Market tasks.",
+  "artifact": "technocore-spark-market/participate.py",
+  "workflow": [
+    "DISCOVER",
+    "CLAIM",
+    "COMPLETE",
+    "VERIFY"
+  ],
+  "features": [
+    "View open tasks",
+    "Claim an available task",
+    "Complete a claimed task with proof",
+    "View activity associated with the participant DID",
+    "View market summary",
+    "Use local Technocore identity signing",
+    "Keep private identity material outside the repository"
+  ],
+  "security": {
+    "private_key_location": "local identity.pem",
+    "private_key_published": false,
+    "private_key_uploaded_to_web": false,
+    "identity_files_ignored_by_git": true
+  },
+  "live_test": {
+    "task_id": "task-002",
+    "reward": 20,
+    "description": "Test Contribution #9 participant workflow",
+    "create_sequence": 5,
+    "claim_sequence": 6,
+    "complete_sequence": 7,
+    "completion_proof": "Contribution #9 participant workflow tested successfully with the local signed participation client"
+  },
+  "verification": {
+    "messages_scanned": 7,
+    "valid_signatures": 7,
+    "invalid_signatures": 0,
+    "total_tasks": 2,
+    "open_tasks": 0,
+    "claimed_tasks": 0,
+    "completed_tasks": 2,
+    "completed_spark": 50
+  },
+  "public_artifacts": {
+    "repository": "https://github.com/Jubbic/technocore-did-beginner-guide",
+    "application": "https://jubbic-spark-market-2026.vercel.app",
+    "room": "d-jubbic-spark"
+  },
+  "scope_note": "SPARK is a demonstration reputation credit used by this project. It is not presented as an official FLOP token, monetary reward, or guarantee of any Technocore/FLOP distribution."
+}

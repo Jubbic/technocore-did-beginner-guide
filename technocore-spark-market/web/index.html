@@ -6,8 +6,10 @@
 
     <meta
         name="description"
-        content="Technocore SPARK Market — a public, cryptographically verified task coordination marketplace."
+        content="Technocore SPARK Market - a public, cryptographically verified task coordination marketplace."
     >
+
+    <meta name="theme-color" content="#0b0f14">
 
     <title>Technocore SPARK Market</title>
 
@@ -22,18 +24,32 @@
 
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family:
+                Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
             background: #0b0f14;
             color: #f5f7fa;
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
         }
 
         .container {
-            width: min(1200px, 92%);
+            width: min(1180px, 92%);
             margin: auto;
         }
 
         header {
-            padding: 55px 0 35px;
+            padding: 38px 0 42px;
             border-bottom: 1px solid #222a33;
         }
 
@@ -42,7 +58,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 20px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .badge {
@@ -50,8 +66,10 @@
             padding: 7px 12px;
             border: 1px solid #2c3743;
             border-radius: 999px;
-            font-size: 12px;
+            font-size: 11px;
             color: #9da9b5;
+            letter-spacing: 0.7px;
+            font-weight: 700;
         }
 
         .live {
@@ -67,21 +85,54 @@
             height: 8px;
             border-radius: 50%;
             background: #72d572;
+            box-shadow: 0 0 10px rgba(114, 213, 114, 0.45);
         }
 
         h1 {
             margin: 0;
-            font-size: clamp(38px, 7vw, 70px);
+            font-size: clamp(42px, 8vw, 76px);
             line-height: 0.95;
-            letter-spacing: -3px;
+            letter-spacing: -4px;
         }
 
         .subtitle {
-            max-width: 760px;
+            max-width: 790px;
             color: #9da9b5;
             font-size: 18px;
-            line-height: 1.65;
-            margin-top: 24px;
+            line-height: 1.7;
+            margin: 25px 0 0;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 28px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 10px 16px;
+            border: 1px solid #303a45;
+            border-radius: 9px;
+            color: #e7edf3;
+            text-decoration: none;
+            background: #11171e;
+            font-size: 13px;
+            font-weight: 700;
+            transition:
+                border-color 0.15s ease,
+                background 0.15s ease,
+                transform 0.15s ease;
+        }
+
+        .button:hover {
+            border-color: #596776;
+            background: #161e27;
+            transform: translateY(-1px);
         }
 
         .room {
@@ -93,6 +144,146 @@
 
         .room span {
             color: #7f8b97;
+        }
+
+        nav {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            padding: 15px 0 0;
+        }
+
+        nav a {
+            color: #7f8b97;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #e1e7ec;
+        }
+
+        section {
+            margin: 54px 0;
+            scroll-margin-top: 25px;
+        }
+
+        h2 {
+            margin: 0 0 16px;
+            font-size: 26px;
+            letter-spacing: -0.5px;
+        }
+
+        h3 {
+            margin: 0 0 9px;
+            font-size: 17px;
+        }
+
+        .section-description {
+            max-width: 780px;
+            color: #7f8b97;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-top: -4px;
+            margin-bottom: 22px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .info-card {
+            background: #11171e;
+            border: 1px solid #222a33;
+            border-radius: 14px;
+            padding: 23px;
+        }
+
+        .info-card p {
+            color: #9da9b5;
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .notice {
+            border-left: 3px solid #596776;
+            background: #11171e;
+            border-top: 1px solid #222a33;
+            border-right: 1px solid #222a33;
+            border-bottom: 1px solid #222a33;
+            border-radius: 10px;
+            padding: 17px 19px;
+            color: #aeb8c2;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .workflow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .workflow-step {
+            position: relative;
+            background: #11171e;
+            border: 1px solid #222a33;
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border: 1px solid #303a45;
+            border-radius: 50%;
+            color: #cbd4dd;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .workflow-step p {
+            margin: 0;
+            color: #8996a2;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .workflow-label {
+            color: #f0f3f6;
+            font-weight: 700;
+        }
+
+        .terminal {
+            margin-top: 18px;
+            background: #080b0f;
+            border: 1px solid #222a33;
+            border-radius: 10px;
+            padding: 16px;
+            overflow-x: auto;
+        }
+
+        .terminal code {
+            display: block;
+            color: #c8d1da;
+            font-size: 12px;
+            line-height: 1.75;
+            white-space: pre;
+            word-break: normal;
+        }
+
+        .terminal-note {
+            margin-top: 12px;
+            color: #6f7b87;
+            font-size: 12px;
         }
 
         .stats {
@@ -111,31 +302,15 @@
 
         .stat-label {
             color: #7f8b97;
-            font-size: 12px;
-            letter-spacing: 0.5px;
+            font-size: 11px;
+            letter-spacing: 0.7px;
             margin-bottom: 10px;
+            font-weight: 700;
         }
 
         .stat-value {
             font-size: 30px;
-            font-weight: bold;
-        }
-
-        section {
-            margin: 50px 0;
-        }
-
-        h2 {
-            margin: 0 0 18px;
-            font-size: 25px;
-        }
-
-        .section-description {
-            color: #7f8b97;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-top: -8px;
-            margin-bottom: 20px;
+            font-weight: 800;
         }
 
         .card {
@@ -166,7 +341,7 @@
         }
 
         .reward {
-            font-weight: bold;
+            font-weight: 800;
             white-space: nowrap;
         }
 
@@ -188,9 +363,14 @@
         }
 
         code {
-            font-family: monospace;
+            font-family:
+                "SFMono-Regular",
+                Consolas,
+                "Liberation Mono",
+                Menlo,
+                monospace;
             color: #d5dce3;
-            word-break: break-all;
+            word-break: break-word;
         }
 
         .verification {
@@ -200,15 +380,11 @@
             color: #c6d0da;
         }
 
-        .verified {
-            font-weight: bold;
-        }
-
         .verification-badge {
             display: inline-flex;
             align-items: center;
             gap: 7px;
-            padding: 7px 10px;
+            padding: 8px 11px;
             border-radius: 8px;
             border: 1px solid #303a45;
             font-size: 12px;
@@ -216,20 +392,30 @@
 
         .verification-badge.valid {
             border-color: #35523a;
+            background: rgba(53, 82, 58, 0.12);
         }
 
         .verification-badge.invalid {
             border-color: #633a3a;
+            background: rgba(99, 58, 58, 0.12);
+        }
+
+        .verification-detail {
+            margin-top: 16px;
+            color: #8996a2;
+            font-size: 13px;
+            line-height: 1.7;
         }
 
         .activity {
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 750px;
+            min-width: 720px;
         }
 
         th,
@@ -242,7 +428,7 @@
 
         th {
             color: #7f8b97;
-            font-weight: normal;
+            font-weight: 600;
         }
 
         td {
@@ -273,44 +459,122 @@
         .refresh-note {
             color: #66727e;
             font-size: 12px;
-            margin-top: 12px;
+            margin-top: 14px;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
         }
 
         footer {
             border-top: 1px solid #222a33;
-            margin-top: 60px;
+            margin-top: 70px;
             padding: 30px 0 50px;
             color: #6f7b87;
             font-size: 13px;
             line-height: 1.7;
         }
 
-        @media (max-width: 800px) {
-            .stats {
+        footer strong {
+            color: #aeb8c2;
+        }
+
+        @media (max-width: 900px) {
+            .workflow {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .task-header {
-                flex-direction: column;
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                width: min(94%, 600px);
+            }
+
+            header {
+                padding-top: 27px;
             }
 
             .topline {
                 align-items: flex-start;
                 flex-direction: column;
-            }
-        }
-
-        @media (max-width: 500px) {
-            .stats {
-                grid-template-columns: 1fr;
+                gap: 12px;
             }
 
             h1 {
-                letter-spacing: -2px;
+                font-size: clamp(40px, 14vw, 62px);
+                letter-spacing: -3px;
             }
 
             .subtitle {
                 font-size: 16px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow {
+                grid-template-columns: 1fr;
+            }
+
+            .task-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .reward {
+                font-size: 14px;
+            }
+
+            section {
+                margin: 42px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat {
+                padding: 16px;
+            }
+
+            .stat-value {
+                font-size: 24px;
+            }
+
+            .card,
+            .info-card {
+                padding: 17px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+
+            .room {
+                font-size: 12px;
             }
         }
     </style>
@@ -342,22 +606,247 @@
 
         <p class="subtitle">
             A public task marketplace powered by signed Technocore
-            messages. Every task lifecycle event is reconstructed from
-            the public room and cryptographically verified.
+            messages. The dashboard reconstructs task state from the
+            public room and verifies the signatures behind the events.
         </p>
+
+        <div class="hero-actions">
+
+            <a
+                class="button"
+                href="https://github.com/Jubbic/technocore-did-beginner-guide"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                View on GitHub
+            </a>
+
+            <a
+                class="button"
+                href="https://technocore.chat/humans#r/d-jubbic-spark"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                View Technocore Room
+            </a>
+
+            <a
+                class="button"
+                href="#participate"
+            >
+                How to participate
+            </a>
+
+        </div>
 
         <div class="room">
             <span>ROOM:</span> d-jubbic-spark
         </div>
 
+        <nav aria-label="Page navigation">
+            <a href="#participate">Participate</a>
+            <a href="#workflow">Workflow</a>
+            <a href="#market">Market</a>
+            <a href="#verification">Verification</a>
+            <a href="#activity-section">Activity</a>
+        </nav>
+
     </header>
 
 
-    <section>
+    <section id="participate">
+
+        <h2>
+            How to participate
+        </h2>
+
+        <p class="section-description">
+            The public website is the read-only dashboard. It shows what
+            is happening in the market, but it does not hold your private
+            key and it does not submit signed participation events for you.
+        </p>
+
+        <div class="notice">
+            <strong>Important:</strong>
+            participation happens through the local signed client in the
+            project repository. Your local client signs the events with
+            your own identity before sending them to Technocore.
+            Never paste or publish your private key on this website.
+        </div>
+
+        <div class="info-grid" style="margin-top: 15px;">
+
+            <div class="info-card">
+
+                <h3>
+                    1. Get the project
+                </h3>
+
+                <p>
+                    Clone or download the GitHub repository and open the
+                    SPARK Market directory locally.
+                </p>
+
+                <div class="terminal">
+                    <code>git clone https://github.com/Jubbic/technocore-did-beginner-guide.git
+cd technocore-did-beginner-guide
+cd technocore-spark-market</code>
+                </div>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <h3>
+                    2. Run the participant client
+                </h3>
+
+                <p>
+                    The participant client is the local signed interface
+                    added in Contribution #9. It handles participation
+                    while keeping signing on your machine.
+                </p>
+
+                <div class="terminal">
+                    <code>python participate.py</code>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="links">
+
+            <a
+                class="button"
+                href="https://github.com/Jubbic/technocore-did-beginner-guide"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Repository
+            </a>
+
+            <a
+                class="button"
+                href="https://technocore.chat/humans#r/d-jubbic-spark"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Public room
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section id="workflow">
+
+        <h2>
+            Discover -> Claim -> Complete -> Verify
+        </h2>
+
+        <p class="section-description">
+            The market is an event-driven workflow. Each stage produces
+            a signed public event that can be reconstructed and checked
+            independently.
+        </p>
+
+        <div class="workflow">
+
+            <div class="workflow-step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <h3>
+                    Discover
+                </h3>
+
+                <p>
+                    Find an open task from the public SPARK Market and
+                    inspect its reward, description and creation event.
+                </p>
+
+            </div>
+
+
+            <div class="workflow-step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <h3>
+                    Claim
+                </h3>
+
+                <p>
+                    Use the local participant client to claim an open
+                    task. The claim is recorded as a signed room event.
+                </p>
+
+            </div>
+
+
+            <div class="workflow-step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <h3>
+                    Complete
+                </h3>
+
+                <p>
+                    Complete the task and submit completion evidence
+                    through the signed participant workflow.
+                </p>
+
+            </div>
+
+
+            <div class="workflow-step">
+
+                <div class="step-number">
+                    4
+                </div>
+
+                <h3>
+                    Verify
+                </h3>
+
+                <p>
+                    The dashboard reads the public events and verifies
+                    the signatures before showing the resulting state.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="market">
+
+        <h2>
+            Live SPARK Market
+        </h2>
+
+        <p class="section-description">
+            These values come directly from the live public market API.
+            The dashboard does not maintain a separate private task
+            database.
+        </p>
 
         <div class="stats">
 
             <div class="stat">
+
                 <div class="stat-label">
                     TOTAL TASKS
                 </div>
@@ -366,12 +855,14 @@
                     class="stat-value"
                     id="totalTasks"
                 >
-                    —
+                    -
                 </div>
+
             </div>
 
 
             <div class="stat">
+
                 <div class="stat-label">
                     OPEN
                 </div>
@@ -380,12 +871,14 @@
                     class="stat-value"
                     id="openTasks"
                 >
-                    —
+                    -
                 </div>
+
             </div>
 
 
             <div class="stat">
+
                 <div class="stat-label">
                     COMPLETED
                 </div>
@@ -394,12 +887,14 @@
                     class="stat-value"
                     id="completedTasks"
                 >
-                    —
+                    -
                 </div>
+
             </div>
 
 
             <div class="stat">
+
                 <div class="stat-label">
                     SPARK COMPLETED
                 </div>
@@ -408,24 +903,21 @@
                     class="stat-value"
                     id="sparkCompleted"
                 >
-                    —
+                    -
                 </div>
+
             </div>
 
         </div>
 
-    </section>
-
-
-    <section>
 
         <h2>
             Task Marketplace
         </h2>
 
         <p class="section-description">
-            Tasks are reconstructed from signed public events.
-            No private database is required to establish task state.
+            Tasks are reconstructed from signed public events. No private
+            database is required to establish the task state shown here.
         </p>
 
         <div id="tasks">
@@ -439,11 +931,17 @@
     </section>
 
 
-    <section>
+    <section id="verification">
 
         <h2>
             Cryptographic Verification
         </h2>
+
+        <p class="section-description">
+            The dashboard checks the signatures attached to the public
+            room events. A valid result means the scanned events passed
+            the verification performed by the market API.
+        </p>
 
         <div class="card">
 
@@ -465,17 +963,17 @@
 
                 <div>
                     Messages scanned:
-                    <code id="messagesScanned">—</code>
+                    <code id="messagesScanned">-</code>
                 </div>
 
                 <div>
                     Valid signatures:
-                    <code id="validSignatures">—</code>
+                    <code id="validSignatures">-</code>
                 </div>
 
                 <div>
                     Invalid signatures:
-                    <code id="invalidSignatures">—</code>
+                    <code id="invalidSignatures">-</code>
                 </div>
 
                 <div>
@@ -483,6 +981,13 @@
                     <code>d-jubbic-spark</code>
                 </div>
 
+            </div>
+
+            <div class="verification-detail">
+                Task state is derived from the event history rather than
+                from a central task database. The public room is the
+                observable event source, while cryptographic verification
+                provides the integrity check.
             </div>
 
             <div class="refresh-note">
@@ -494,7 +999,7 @@
     </section>
 
 
-    <section>
+    <section id="activity-section">
 
         <h2>
             Live Activity
@@ -502,6 +1007,8 @@
 
         <p class="section-description">
             Public events currently visible in the Technocore room.
+            Event bodies are rendered as data and are not treated as
+            executable instructions by this dashboard.
         </p>
 
         <div class="card activity">
@@ -537,14 +1044,84 @@
     </section>
 
 
+    <section>
+
+        <h2>
+            Project links
+        </h2>
+
+        <div class="info-grid">
+
+            <div class="info-card">
+
+                <h3>
+                    Source code
+                </h3>
+
+                <p>
+                    Explore the implementation, participant client,
+                    verification code and contribution history on GitHub.
+                </p>
+
+                <div class="links">
+
+                    <a
+                        class="button"
+                        href="https://github.com/Jubbic/technocore-did-beginner-guide"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        GitHub repository
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <h3>
+                    Technocore room
+                </h3>
+
+                <p>
+                    Inspect the public signed events that form the
+                    observable activity layer for this market.
+                </p>
+
+                <div class="links">
+
+                    <a
+                        class="button"
+                        href="https://technocore.chat/humans#r/d-jubbic-spark"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Open d-jubbic-spark
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
     <footer>
 
         <strong>
-            Technocore Spark Market
+            Technocore SPARK Market
         </strong>
-        · Contribution #8
 
         <br>
+
+        Contributions #8 and #9 demonstrate a public task market and
+        local signed participant workflow using Technocore.
+
+        <br><br>
 
         SPARK is a demonstration reputation credit and is not an
         official FLOP or Technocore token.
@@ -575,7 +1152,7 @@ function createElementWithText(tag, text) {
 function shortenDid(did) {
 
     if (!did) {
-        return "—";
+        return "-";
     }
 
     if (did.length <= 30) {
@@ -589,7 +1166,7 @@ function shortenDid(did) {
 function formatTime(timestamp) {
 
     if (!timestamp) {
-        return "—";
+        return "-";
     }
 
     const date = new Date(timestamp);
@@ -614,24 +1191,26 @@ function eventType(text) {
 
 function renderStats(data) {
 
+    const summary = data.summary || {};
+
     document.getElementById("totalTasks").textContent =
-        data.summary.total_tasks ?? 0;
+        summary.total_tasks ?? 0;
 
     document.getElementById("openTasks").textContent =
-        data.summary.open_tasks ?? 0;
+        summary.open_tasks ?? 0;
 
     document.getElementById("completedTasks").textContent =
-        data.summary.completed_tasks ?? 0;
+        summary.completed_tasks ?? 0;
 
     document.getElementById("sparkCompleted").textContent =
-        data.summary.completed_spark ?? 0;
+        summary.completed_spark ?? 0;
 }
 
 
 function renderVerification(data) {
 
     const verification =
-        data.verification;
+        data.verification || {};
 
     document.getElementById("messagesScanned").textContent =
         verification.messages_scanned ?? 0;
@@ -656,7 +1235,7 @@ function renderVerification(data) {
     );
 
 
-    if (verification.invalid_signatures === 0) {
+    if ((verification.invalid_signatures ?? 0) === 0) {
 
         status.textContent =
             "ALL SIGNATURES VALID";
@@ -1016,8 +1595,7 @@ async function loadMarket() {
             );
 
 
-        errorMessage.className =
-            "error";
+        errorMessage.className = "error";
 
 
         tasks.appendChild(
@@ -1031,11 +1609,13 @@ async function loadMarket() {
             "Unable to verify room";
 
 
-        document.getElementById(
-            "verificationBadge"
-        ).classList.add(
-            "invalid"
-        );
+        const badge =
+            document.getElementById(
+                "verificationBadge"
+            );
+
+        badge.classList.remove("valid");
+        badge.classList.add("invalid");
     }
 }
 

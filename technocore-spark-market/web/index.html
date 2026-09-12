@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -577,6 +577,71 @@
                 font-size: 12px;
             }
         }
+
+        .participant-panel {
+            margin: 20px 0 30px;
+            background: #11171e;
+            border: 1px solid #303a45;
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .participant-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .participant-did {
+            margin-top: 12px;
+            color: #9da9b5;
+            font-size: 13px;
+        }
+
+        .participant-status {
+            margin-top: 12px;
+            color: #9da9b5;
+            font-size: 13px;
+        }
+
+        .market-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid #222a33;
+        }
+
+        .market-proof-input {
+            flex: 1 1 300px;
+            min-height: 42px;
+            padding: 10px 13px;
+            border: 1px solid #303a45;
+            border-radius: 9px;
+            background: #080b0f;
+            color: #e7edf3;
+            font: inherit;
+        }
+
+        .market-proof-input::placeholder {
+            color: #66727e;
+        }
+
+        .market-action-button {
+            cursor: pointer;
+            border: 1px solid #596776;
+        }
+
+        .market-action-button:disabled {
+            opacity: 0.55;
+            cursor: wait;
+            transform: none;
+        }
+
     </style>
 </head>
 
@@ -623,7 +688,7 @@
 
             <a
                 class="button"
-                href="https://technocore.chat/humans#r/d-jubbic-spark"
+                href="https://technocore.chat/humans#r/p-jubbic-spark-market"
                 target="_blank"
                 rel="noopener noreferrer"
             >
@@ -640,7 +705,7 @@
         </div>
 
         <div class="room">
-            <span>ROOM:</span> d-jubbic-spark
+            <span>ROOM:</span> p-jubbic-spark-market
         </div>
 
         <nav aria-label="Page navigation">
@@ -661,17 +726,16 @@
         </h2>
 
         <p class="section-description">
-            The public website is the read-only dashboard. It shows what
-            is happening in the market, but it does not hold your private
-            key and it does not submit signed participation events for you.
+            The public website is now an interactive participant client.
+            Your browser creates and stores the signing identity locally,
+            while Technocore receives only the signed event.
         </p>
 
         <div class="notice">
-            <strong>Important:</strong>
-            participation happens through the local signed client in the
-            project repository. Your local client signs the events with
-            your own identity before sending them to Technocore.
-            Never paste or publish your private key on this website.
+            <strong>Security:</strong>
+            the private signing key stays inside the browser's local
+            cryptographic storage. The website sends only signed public
+            events to Technocore. Never paste a private key into this page.
         </div>
 
         <div class="info-grid" style="margin-top: 15px;">
@@ -683,8 +747,7 @@
                 </h3>
 
                 <p>
-                    Clone or download the GitHub repository and open the
-                    SPARK Market directory locally.
+                    Open the public market and create or connect a browser-local identity.
                 </p>
 
                 <div class="terminal">
@@ -699,17 +762,16 @@ cd technocore-spark-market</code>
             <div class="info-card">
 
                 <h3>
-                    2. Run the participant client
+                    2. Participate directly
                 </h3>
 
                 <p>
-                    The participant client is the local signed interface
-                    added in Contribution #9. It handles participation
-                    while keeping signing on your machine.
+                    Claim an open task and submit completion proof directly from the task card.
+                    No CLI installation is required.
                 </p>
 
                 <div class="terminal">
-                    <code>python participate.py</code>
+                    <code>Advanced/local CLI fallback: python participate.py</code>
                 </div>
 
             </div>
@@ -729,7 +791,7 @@ cd technocore-spark-market</code>
 
             <a
                 class="button"
-                href="https://technocore.chat/humans#r/d-jubbic-spark"
+                href="https://technocore.chat/humans#r/p-jubbic-spark-market"
                 target="_blank"
                 rel="noopener noreferrer"
             >
@@ -784,8 +846,8 @@ cd technocore-spark-market</code>
                 </h3>
 
                 <p>
-                    Use the local participant client to claim an open
-                    task. The claim is recorded as a signed room event.
+                    Connect your browser identity and claim an open task. The claim is recorded
+                    as a signed room event.
                 </p>
 
             </div>
@@ -911,6 +973,61 @@ cd technocore-spark-market</code>
         </div>
 
 
+
+        <div class="participant-panel">
+            <div class="participant-header">
+                <div>
+                    <h3>Participate directly in the market</h3>
+                    <p class="section-description" style="margin-bottom:0;">
+                        Create or connect a browser-local identity, then claim
+                        and complete tasks without installing the CLI.
+                        Your private signing key never leaves this browser.
+                    </p>
+                </div>
+
+                <div class="links" style="margin-top:0;">
+                    <button
+                        id="createIdentity"
+                        class="button"
+                        type="button"
+                    >
+                        Create identity
+                    </button>
+
+                    <button
+                        id="connectIdentity"
+                        class="button"
+                        type="button"
+                    >
+                        Connect identity
+                    </button>
+
+                    <button
+                        id="disconnectIdentity"
+                        class="button"
+                        type="button"
+                        style="display:none;"
+                    >
+                        Disconnect
+                    </button>
+                </div>
+            </div>
+
+            <div class="participant-did">
+                DID:
+                <code id="participantDid">
+                    Not connected
+                </code>
+            </div>
+
+            <div
+                id="participantStatus"
+                class="participant-status"
+            >
+                Connect or create a browser identity to participate.
+            </div>
+        </div>
+
         <h2>
             Task Marketplace
         </h2>
@@ -978,7 +1095,7 @@ cd technocore-spark-market</code>
 
                 <div>
                     Room:
-                    <code>d-jubbic-spark</code>
+                    <code>p-jubbic-spark-market</code>
                 </div>
 
             </div>
@@ -1059,7 +1176,7 @@ cd technocore-spark-market</code>
                 </h3>
 
                 <p>
-                    Explore the implementation, participant client,
+                    Explore the implementation, browser participation,
                     verification code and contribution history on GitHub.
                 </p>
 
@@ -1094,11 +1211,11 @@ cd technocore-spark-market</code>
 
                     <a
                         class="button"
-                        href="https://technocore.chat/humans#r/d-jubbic-spark"
+                        href="https://technocore.chat/humans#r/p-jubbic-spark-market"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        Open d-jubbic-spark
+                        Open p-jubbic-spark-market
                     </a>
 
                 </div>
@@ -1399,6 +1516,10 @@ function renderTasks(data) {
         card.appendChild(status);
         card.appendChild(meta);
 
+        if (typeof addParticipantActions === "function") {
+            addParticipantActions(card, task);
+        }
+
         container.appendChild(card);
     }
 }
@@ -1630,5 +1751,31 @@ setInterval(
 
 </script>
 
+<script src="/identity.js"></script>
+<script src="/market-client.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const createButton = document.getElementById("createIdentity");
+    const connectButton = document.getElementById("connectIdentity");
+    const disconnectButton = document.getElementById("disconnectIdentity");
+
+    if (createButton) {
+        createButton.addEventListener("click", createBrowserIdentity);
+    }
+
+    if (connectButton) {
+        connectButton.addEventListener("click", connectIdentity);
+    }
+
+    if (disconnectButton) {
+        disconnectButton.addEventListener("click", disconnectIdentity);
+    }
+
+    if (typeof initialiseParticipantUI === "function") {
+        initialiseParticipantUI();
+    }
+});
+</script>
 </body>
 </html>

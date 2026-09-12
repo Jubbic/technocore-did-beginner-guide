@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 import sys
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -10,7 +11,7 @@ from technocore_agent import (
     post_signed_message,
 )
 
-ROOM = "d-jubbic-spark"
+ROOM = os.environ.get("SPARK_ROOM", "d-jubbic-spark")
 IDENTITY = PROJECT_ROOT / "identity.pem"
 
 

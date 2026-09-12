@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 import sys
 import argparse
 
@@ -13,7 +14,7 @@ from technocore_agent import (
 )
 
 
-ROOM = "d-jubbic-spark"
+ROOM = os.environ.get("SPARK_ROOM", "d-jubbic-spark")
 IDENTITY = PROJECT_ROOT / "identity.pem"
 
 

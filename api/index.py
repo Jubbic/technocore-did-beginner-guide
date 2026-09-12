@@ -9,7 +9,7 @@ import unicodedata
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
 
 
-ROOM = "d-jubbic-spark"
+ROOM = "p-jubbic-spark-market"
 BASE_URL = "https://technocore.chat"
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -224,6 +224,11 @@ def build_market():
 
             description = "|".join(parts[3:])
 
+            # First valid creation wins. Later duplicate
+            # TASK_CREATE events cannot overwrite task state.
+            if task_id in tasks:
+                continue
+
             tasks[task_id] = {
                 "task_id": task_id,
                 "reward": reward,
@@ -251,6 +256,12 @@ def build_market():
 
             task = tasks[task_id]
 
+            # The DID inside the event must be the actual
+            # cryptographic signer of the event.
+            if claimant != message.get("from"):
+                continue
+
+            # Only the first valid claim wins.
             if task["status"] == "OPEN":
                 task["status"] = "CLAIMED"
                 task["claimed_by"] = claimant
@@ -270,11 +281,22 @@ def build_market():
 
             task = tasks[task_id]
 
-            if task["status"] in {"OPEN", "CLAIMED"}:
-                task["status"] = "COMPLETED"
-                task["completed_by"] = contributor
-                task["complete_seq"] = message.get("seq")
-                task["proof"] = proof
+            # Completion must be signed by the contributor named
+            # in the event and by the DID that actually claimed
+            # the task. An OPEN task cannot be completed directly.
+            if contributor != message.get("from"):
+                continue
+
+            if task["status"] != "CLAIMED":
+                continue
+
+            if task["claimed_by"] != contributor:
+                continue
+
+            task["status"] = "COMPLETED"
+            task["completed_by"] = contributor
+            task["complete_seq"] = message.get("seq")
+            task["proof"] = proof
 
     completed_tasks = [
         task

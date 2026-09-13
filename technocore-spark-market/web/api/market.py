@@ -8,7 +8,7 @@ import unicodedata
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
 
 
-ROOM = "d-jubbic-spark"
+ROOM = "p-jubbic-spark-market"
 BASE_URL = "https://technocore.chat"
 
 INVISIBLE_CATEGORIES = {

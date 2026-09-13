@@ -1116,6 +1116,61 @@ cd technocore-spark-market</code>
     </section>
 
 
+
+    <section id="my-activity-section">
+
+        <h2>My Activity</h2>
+
+        <p class="section-description">
+            Your participant history reconstructed directly from
+            signed events in the public Technocore market room.
+            No central activity database is used.
+        </p>
+
+        <div class="card activity">
+
+            <div class="my-activity-summary">
+                <div>
+                    <strong id="myActivityClaims">0</strong>
+                    <span>Claims</span>
+                </div>
+
+                <div>
+                    <strong id="myActivityCompletions">0</strong>
+                    <span>Completions</span>
+                </div>
+
+                <div>
+                    <strong id="myActivityRewards">0 SPARK</strong>
+                    <span>Completed rewards</span>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Task</th>
+                        <th>Reward</th>
+                        <th>Sequence</th>
+                        <th>Proof</th>
+                        <th>Signature</th>
+                    </tr>
+                </thead>
+
+                <tbody id="myActivity">
+                    <tr>
+                        <td colspan="6">
+                            Connect a browser identity to view your activity.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </section>
+
     <section id="activity-section">
 
         <h2>
@@ -1548,6 +1603,178 @@ function addMeta(container, label, value) {
 }
 
 
+
+function renderMyActivity(data) {
+
+    const tbody =
+        document.getElementById("myActivity");
+
+    const claimsElement =
+        document.getElementById("myActivityClaims");
+
+    const completionsElement =
+        document.getElementById("myActivityCompletions");
+
+    const rewardsElement =
+        document.getElementById("myActivityRewards");
+
+    if (!tbody) {
+        return;
+    }
+
+    tbody.replaceChildren();
+
+    if (!marketIdentity) {
+
+        claimsElement.textContent = "0";
+        completionsElement.textContent = "0";
+        rewardsElement.textContent = "0 SPARK";
+
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+
+        cell.colSpan = 6;
+        cell.textContent =
+            "Connect a browser identity to view your activity.";
+
+        row.appendChild(cell);
+        tbody.appendChild(row);
+
+        return;
+    }
+
+    const myDid = marketIdentity.did;
+
+    const tasksById = new Map(
+        (data.tasks || []).map(
+            task => [task.task_id, task]
+        )
+    );
+
+    const events = [];
+
+    for (const message of data.messages || []) {
+
+        if (!message.signature_valid) {
+            continue;
+        }
+
+        const parts =
+            (message.text || "").split("|");
+
+        if (
+            parts[0] === "TASK_CLAIM" &&
+            parts[2] === myDid
+        ) {
+
+            const task =
+                tasksById.get(parts[1]);
+
+            events.push({
+                type: "CLAIM",
+                taskId: parts[1],
+                reward: task ? task.reward : 0,
+                seq: message.seq,
+                proof: "-",
+                signatureValid: true
+            });
+
+            continue;
+        }
+
+        if (
+            parts[0] === "TASK_COMPLETE" &&
+            parts[2] === myDid
+        ) {
+
+            const task =
+                tasksById.get(parts[1]);
+
+            events.push({
+                type: "COMPLETE",
+                taskId: parts[1],
+                reward: task ? task.reward : 0,
+                seq: message.seq,
+                proof: parts.slice(3).join("|"),
+                signatureValid: true
+            });
+        }
+    }
+
+    events.sort(
+        (a, b) =>
+            Number(b.seq || 0) -
+            Number(a.seq || 0)
+    );
+
+    const claims =
+        events.filter(
+            event => event.type === "CLAIM"
+        );
+
+    const completions =
+        events.filter(
+            event => event.type === "COMPLETE"
+        );
+
+    const rewards =
+        completions.reduce(
+            (total, event) =>
+                total + Number(event.reward || 0),
+            0
+        );
+
+    claimsElement.textContent =
+        String(claims.length);
+
+    completionsElement.textContent =
+        String(completions.length);
+
+    rewardsElement.textContent =
+        rewards + " SPARK";
+
+    if (events.length === 0) {
+
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+
+        cell.colSpan = 6;
+        cell.textContent =
+            "No signed claims or completions found for this identity.";
+
+        row.appendChild(cell);
+        tbody.appendChild(row);
+
+        return;
+    }
+
+    for (const event of events) {
+
+        const row = document.createElement("tr");
+
+        const values = [
+            event.type,
+            event.taskId,
+            event.reward + " SPARK",
+            "#" + event.seq,
+            event.proof,
+            event.signatureValid ? "VALID" : "INVALID"
+        ];
+
+        for (const value of values) {
+
+            const cell =
+                document.createElement("td");
+
+            cell.textContent = String(value);
+
+            row.appendChild(cell);
+        }
+
+        tbody.appendChild(row);
+    }
+}
+
 function renderActivity(data) {
 
     const tbody =
@@ -1694,6 +1921,7 @@ async function loadMarket() {
         renderVerification(data);
         renderTasks(data);
         renderActivity(data);
+        renderMyActivity(data);
 
 
     } catch (error) {

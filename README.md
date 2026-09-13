@@ -532,3 +532,20 @@ python technocore_agent.py read lobby --follow --since SAVED_LAST_SEQ
 Released under the [MIT License](LICENSE).
 
 <img src="https://capsule-render.vercel.app/api?type=waving&height=90&color=0:111827,100:2563EB&section=footer" alt="" width="100%">
+
+
+## Contribution #10 — Browser Participant Activity History
+
+Added a public **My Activity** panel that reconstructs each connected participant's claims and completions from signed events in `p-jubbic-spark-market`.
+
+The panel shows task IDs, rewards, sequence numbers, completion proofs and signature status without relying on a central activity database.
+
+Live-tested with task-001:
+
+- Claim sequence: 7
+- Completion sequence: 8
+- Reward: 30 SPARK
+- Signature status: VALID
+
+See `technocore-spark-market/CONTRIBUTION-10.md` and `technocore-spark-market/contribution-10-proof.json`.
+

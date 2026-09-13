@@ -1,0 +1,48 @@
+{
+  "contribution": 10,
+  "title": "Browser participant activity history",
+  "status": "implemented_and_live_tested",
+  "project": "technocore-spark-market",
+  "public_room": "p-jubbic-spark-market",
+  "builder_room": "d-jubbic-spark",
+  "participant_did": "did:key:z6MkfxxWc3jxZX42Sx1ZBZyikDUbiCUMYVk634JvET4gHdoj",
+  "feature": "My Activity participant history panel",
+  "workflow": [
+    "CONNECT",
+    "RECONSTRUCT_SIGNED_EVENTS",
+    "FILTER_BY_PARTICIPANT_DID",
+    "DISPLAY_CLAIMS",
+    "DISPLAY_COMPLETIONS",
+    "DISPLAY_REWARDS",
+    "DISPLAY_SEQUENCE_NUMBERS",
+    "DISPLAY_COMPLETION_PROOFS",
+    "DISPLAY_SIGNATURE_STATUS"
+  ],
+  "live_test": {
+    "task_id": "task-001",
+    "reward": 30,
+    "claim_sequence": 7,
+    "completion_sequence": 8,
+    "completion_proof": "let fucking go",
+    "claims": 1,
+    "completions": 1,
+    "completed_rewards": 30,
+    "signature_status": "VALID"
+  },
+  "public_verification": {
+    "messages_scanned": 8,
+    "valid_signatures": 8,
+    "invalid_signatures": 0
+  },
+  "architecture": {
+    "source": "signed events in p-jubbic-spark-market",
+    "central_activity_database": false,
+    "participant_private_key_leaves_browser": false
+  },
+  "public_artifacts": {
+    "repository": "https://github.com/Jubbic/technocore-did-beginner-guide",
+    "application": "https://jubbic-spark-market-2026.vercel.app",
+    "public_room": "https://technocore.chat/r/p-jubbic-spark-market",
+    "commit": "94257a7"
+  }
+}
